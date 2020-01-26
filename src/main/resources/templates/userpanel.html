@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html
+        lang="pl"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>USERPANEL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body class="m-4">
+<div th:switch="${messages.size()}">
+    <h2 th:case="0">No messages</h2>
+    <div th:case="*">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Content</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="m : ${messages}">
+                <td th:text="${m.content}"></td>
+                <td th:text="${m.createDate}"></td>
+
+                <td><a class="btn btn-primary" th:href="@{/deleteM/{id}(id=${m.id})}">Delete</a></td>
+                <td><a class="btn btn-primary" th:href="@{/editM/{id}(id=${m.id})}">Edit</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a class="btn btn-primary" th:href="@{/post/{id}(id=${id})}">Post</a></p>
+</div>
+</body>

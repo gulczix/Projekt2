@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html
+        lang="pl"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>HOME</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body class="m-4">
+<div><h2><a class="btn btn-primary" th:href="@{/register}">REGISTER</a></h2>
+
+<form action="#" th:action="@{/loging}" th:object="${person}" method="post">
+	<div class="form-group">
+	    <label for="nick" th:text="#{nick}">USERNAME</label>
+	    <input class="form-control" type="text" th:field="*{nick}" id="nick" placeholder="username">
+    </div>
+    <div class="form-group">
+	    <label for="pass" th:text="#{pass}">PASS</label>
+	    <input class="form-control" type="text" th:field="*{pass}" id="pass" placeholder="password">
+	</div>
+    <input class="btn btn-primary" type="submit" value="LOG">
+</form>
+</div>
+</body>
+</html>

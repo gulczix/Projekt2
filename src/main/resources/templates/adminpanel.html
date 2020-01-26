@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:lang="pl"
+>
+<head>
+  <meta charset="UTF-8"/>
+  <title>adminpanel</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body class="m-4">
+
+<div th:switch="${persons}">
+  <h2 th:case="null">No users.</h2>
+  <div th:case="*">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th th:text="#{name}">Name</th>
+        <th th:text="#{surname}">Surname</th>
+        <th>Nick</th>
+        <th>Pass</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="person : ${persons}">
+        <td th:text="${person.firstName}"></td>
+        <td th:text="${person.lastName}"></td>
+        <td th:text="${person.nick}"></td>
+        <td th:text="${person.pass}"></td>
+        <td th:text="${person.email}"></td>
+        <td><a class="btn btn-primary" th:href="@{/deleteP/{id}(id=${person.id})}">Delete</a></td>
+        <td><a class="btn btn-primary" th:href="@{/editP/{id}(id=${person.id})}">Edit</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p><a class="btn btn-primary" href="/">Home</a></p>
+</div>
+  <div th:switch="${messages.size()}">
+    <h2 th:case="0">No messages.</h2>
+    <div th:case="*">
+      <table class="table ">
+        <thead  class="thead-dark">
+        <tr>
+          <th>Content</th>
+          <th>Date</th>
+          <th>UserID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${messages}">
+          <td th:text="${m.content}"></td>
+          <td th:text="${m.createDate}"></td>
+          <td th:text="${m.idPerson}"></td>
+
+          <td><a class="btn btn-primary" th:href="@{/deleteM/{id}(id=${m.id})}">Delete</a></td>
+          <td><a class="btn btn-primary" th:href="@{/editM/{id}(id=${m.id})}">Edit</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><a class="btn btn-primary" th:href="@{/post/{id}(id=${id})}">Post</a></p>
+  </div>
+</body>
